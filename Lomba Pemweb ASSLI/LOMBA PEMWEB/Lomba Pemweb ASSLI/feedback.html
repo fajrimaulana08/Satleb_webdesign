@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <link rel="stylesheet" href="styler.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .feedback-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .feedback-list {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+        }
+        .feedback-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <p class="merek">Wonder Wedding</p>
+        <a class="nav-item home" href="index.html">Home</a>
+        <a class="nav-item" href="paket.html">Paket Wedding</a> 
+        <a class="nav-item" href="contact.html">Contact</a>
+        <a class="nav-item" href="syarat.html">Syarat Dan Ketentuan</a>
+        <a class="nav-item" href="feedback.html">FeedBack</a>
+    </nav>
+    <div style="background-color: #ead8b1; height: 70px"></div>
+
+
+    <div class="container">
+        <h1>Feedback Form</h1>
+        <form id="feedbackForm" class="feedback-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <textarea id="feedback" rows="4" placeholder="Your Feedback" required></textarea>
+            <label for="rating">Rating:</label>
+            <select id="rating" required>
+                <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+                <option value="⭐⭐⭐">⭐⭐⭐</option>
+                <option value="⭐⭐">⭐⭐</option>
+                <option value="⭐">⭐</option>
+            </select>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+        
+        <div class="feedback-list" id="feedbackList">
+            <h2>User Feedback:</h2>
+        </div>
+    </div>
+
+    <script>
+        const feedbackForm = document.getElementById('feedbackForm');
+        const feedbackList = document.getElementById('feedbackList');
+
+        feedbackForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent page reload
+            
+            const name = document.getElementById('name').value;
+            const rating = document.getElementById('rating').value;
+            const feedback = document.getElementById('feedback').value;
+
+            // Create a new feedback item
+            const feedbackItem = document.createElement('div');
+            feedbackItem.classList.add('feedback-item');
+            feedbackItem.innerHTML = `<strong>${name}</strong><p>${rating}</p><p>${feedback}</p>`;
+            
+            // Append the feedback item to the feedback list
+            feedbackList.appendChild(feedbackItem);
+
+            // Clear the form
+            feedbackForm.reset();
+        });
+    </script>
+</body>
+</html>
+
+
